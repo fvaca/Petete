@@ -1,1 +1,6 @@
 .env
+.vscode/
+__pycache__/
+TEMP/
+notes/
+db-settings.json

@@ -76,7 +76,7 @@ def echo(update: telegram.Update, context: telegram.ext.CallbackContext) -> None
         )
 
     nr = random.randint(0, 100) 
-    if nr== 42 or nr == 69:
+    if nr== 42 or nr == 69 or nr == 100:
         context.bot.send_message(
                 update.message.chat_id,
                 "El libro gordo te enseña, el libro gordo entretiene, y yo te digo contenta, hasta el mensaje que viene."

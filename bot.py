@@ -60,8 +60,7 @@ def echo(update: telegram.Update, context: telegram.ext.CallbackContext) -> None
     # Print to console the message sent by the user
     print(f'({update.message.from_user.id}) {update.message.from_user.first_name} wrote {update.message.text}')
     
-    # Send a message to the user from the bot
-    if update.message.text:
+    if update.message.text and 'petete' in update.message.text.lower():
         response = AIBOT.chat(update.message.text, update.message.from_user.id)
         context.bot.send_message(
             update.message.chat_id,

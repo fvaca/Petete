@@ -4,3 +4,5 @@ __pycache__/
 TEMP/
 notes/
 db-settings.json
+datastore/chats-records.json
+datastore/db-users.json

@@ -1,5 +1,6 @@
 import os
 import logging
+import random
 # import urllib3 - not sure if this is needed...
 import telegram
 import telegram.ext
@@ -60,16 +61,26 @@ def echo(update: telegram.Update, context: telegram.ext.CallbackContext) -> None
     # Print to console the message sent by the user
     print(f'({update.message.from_user.id}) {update.message.from_user.first_name} wrote {update.message.text}')
     
-    if update.message.text and 'petete' in update.message.text.lower():
+    is_group = update.message.chat.type == 'group' or update.message.chat.type == 'supergroup'
+    if is_group and update.message.text and 'petete' in update.message.text.lower():
+        response = AIBOT.chat(update.message.text, update.message.from_user.id)
+        context.bot.send_message(
+            update.message.chat_id,
+            response
+        )        
+    else:
         response = AIBOT.chat(update.message.text, update.message.from_user.id)
         context.bot.send_message(
             update.message.chat_id,
             response
         )
+
+    nr = random.randint(0, 100) 
+    if nr== 42 or nr == 69:
         context.bot.send_message(
-            update.message.chat_id,
-            "El libro gordo te enseña, el libro gordo entretiene, y yo te digo contenta, hasta el mensaje que viene."
-        )
+                update.message.chat_id,
+                "El libro gordo te enseña, el libro gordo entretiene, y yo te digo contenta, hasta el mensaje que viene."
+            )
         
 # Define the start handler - it will be called when the bot receives the /start command
 def start(update: telegram.Update, context: telegram.ext.CallbackContext) -> None:

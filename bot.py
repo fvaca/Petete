@@ -66,6 +66,10 @@ def echo(update: telegram.Update, context: telegram.ext.CallbackContext) -> None
             update.message.chat_id,
             response
         )
+        context.bot.send_message(
+            update.message.chat_id,
+            "El libro gordo te enseña, el libro gordo entretiene, y yo te digo contenta, hasta el mensaje que viene."
+        )
         
 # Define the start handler - it will be called when the bot receives the /start command
 def start(update: telegram.Update, context: telegram.ext.CallbackContext) -> None:

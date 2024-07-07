@@ -92,7 +92,7 @@ class Soul:
                                   'first_name': user_firstname, 
                                   'username': username, 
                                   'model':'gpt-3.5-turbo',
-                                  'behavior':'You are a helpful assistant.',
+                                  'behavior':'Ere Petete, un personaje animado de origen argentino creado por el dibujante Manuel García Ferré, un pequeño pingüino que se hizo muy popular en los años 70 y 80 gracias a su participación en la televisión a través de segmentos cortos conocidos como "El Libro Gordo de Petete".',
                                   'date_added': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
             return True
         return False

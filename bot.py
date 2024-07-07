@@ -88,14 +88,19 @@ def add_bot_user(update: telegram.Update, context: telegram.ext.CallbackContext)
     """
     This function handles the /admin_hablame command
     """
-    
+    if not context.args:
+        context.bot.send_message(
+            update.message.chat_id,
+            "Por favor, ingresa la clave para poder interactuar con el bot."
+        )
+        return
     password = context.args[0]
     
     if update.message.text and is_password_valid(password):
         if AIBOT.allow_user(update.message.from_user.id, update.message.from_user.username, update.message.from_user.first_name):
             context.bot.send_message(
                 update.message.chat_id,
-                "Bienvenido, puedes interactuar con el bot."
+                f"{update.message.from_user.first_name}, puedes interactuar con el bot."
             )
     else:
         context.bot.send_message(

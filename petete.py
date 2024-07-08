@@ -80,9 +80,13 @@ class Soul:
         
         return messages
     
-    def get_messages(self, user_id):
-        chats = Query()
-        return self._dbChats.search(chats.user_id == user_id)      
+    def get_messages(self, user_id=None):
+        
+        if user_id:
+            chats = Query()
+            return self._dbChats.search(chats.user_id == user_id)
+        else:
+            return self._dbChats.all()     
     
     # Allow user to interact with the bot    
     def allow_user(self, user_id, username, user_firstname):

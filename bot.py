@@ -199,14 +199,22 @@ def get_messages(update: telegram.Update, context: telegram.ext.CallbackContext)
     """
     This function handles the /mi_mensajes command
     """
-    
-    messages = AIBOT.get_messages(update.message.from_user.id)
-    
-    for message in messages:
-        context.bot.send_message(
-            update.message.chat_id,
-            message
-        )
+    password = context.args[0]
+    if is_password_valid(password, is_admin=True):
+        messages = AIBOT.get_messages()
+        
+        for message in messages:
+            context.bot.send_message(
+                update.message.chat_id,
+                message
+            )
+    else:        
+        messages = AIBOT.get_messages(update.message.from_user.id)    
+        for message in messages:
+            context.bot.send_message(
+                update.message.chat_id,
+                message
+            )
 
 # Define the main function to run the bot
 def main() -> None:
@@ -226,7 +234,7 @@ def main() -> None:
     dispatcher.add_handler(telegram.ext.CommandHandler('cual_es_la_personalidad', show_bot_behavior))
     dispatcher.add_handler(telegram.ext.CommandHandler('cambia_personalidad', change_bot_behavior))
     dispatcher.add_handler(telegram.ext.CommandHandler('cambia_modelo', change_bot_model))
-    dispatcher.add_handler(telegram.ext.CommandHandler('mi_mensajes', get_messages))
+    dispatcher.add_handler(telegram.ext.CommandHandler('mi_mensajes', get_messages, pass_args=True))
 
     # Start the Bot
     telegram_updater.start_polling()

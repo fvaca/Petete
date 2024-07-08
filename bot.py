@@ -125,8 +125,8 @@ def show_all_bot_users(update: telegram.Update, context: telegram.ext.CallbackCo
     This function handles the /admin_bot_users command
     """
     
-    password = context.args[0]
-    if is_password_valid(password, is_admin=True):
+    password = context.args[0] if len(password) > 0 else None
+    if password and is_password_valid(password, is_admin=True):
         context.bot.send_message(
             update.message.chat_id,
             "Estos son los usuarios que pueden interactuar con el bot."

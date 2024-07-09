@@ -6,3 +6,5 @@ notes/
 db-settings.json
 datastore/chats-records.json
 datastore/db-users.json
+datastore/groups-records.json
+datastore/groups-settings.json
